@@ -14,7 +14,8 @@ function respond() {
   // If request exists and matches command
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
-    postMessage();
+    var response = cool();
+    postMessage(response);
     this.res.end();
   } else {
     console.log("don't care");
@@ -24,11 +25,8 @@ function respond() {
 }
 
 // Post message to GroupMe
-function postMessage() {
-  var botResponse, options, body, botReq;
-
-  // Get bot's response
-  botResponse = cool();
+function postMessage(botResponse) {
+  var options, body, botReq;
 
   // Set post
   options = {
