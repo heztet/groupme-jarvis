@@ -9,14 +9,16 @@ var botID = process.env.BOT_ID;
 function respond() {
   // User post
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/; // Command '/cool guy'
+      coolRegex = /^\/cool guy$/; // Command '/cool guy'
 
-  // If request exists and matches command
-  if(request.text && botRegex.test(request.text)) {
+  // '/cool guy'
+  //if(request.text && coolRegex.test(request.text)) {
+  if (request.text && (equest.text.indexOf("/cool guy") > -1)) {
     this.res.writeHead(200);
     var response = cool();
     postMessage(response);
     this.res.end();
+  // ''
   } else {
     console.log("don't care");
     this.res.writeHead(200);
