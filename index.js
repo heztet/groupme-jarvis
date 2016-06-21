@@ -1,13 +1,17 @@
 var http, director, cool, bot, router, server, port;
 
+// Modules
 http        = require('http');
 director    = require('director');
 cool        = require('cool-ascii-faces');
 bot         = require('./bot.js');
 
+// When website is accessed
 router = new director.http.Router({
   '/' : {
+    // Post the bot's response
     post: bot.respond,
+    // And display the web browser view
     get: ping
   }
 });
@@ -29,5 +33,5 @@ server.listen(port);
 
 function ping() {
   this.res.writeHead(200);
-  this.res.end("Hey, I'm Cool Guy.");
+  this.res.end("<a href=\"https://github.com/heztet/groupme-jarvis\">GroupMe Jarvis Bot</a> by Nicky Marino");
 }

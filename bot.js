@@ -1,12 +1,17 @@
+// Modules
 var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
 
+// Get the Bot Id
 var botID = process.env.BOT_ID;
 
+// Get request and post response
 function respond() {
+  // User post
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/;
+      botRegex = /^\/cool guy$/; // Command '/cool guy'
 
+  // If request exists and matches command
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
     postMessage();
@@ -18,22 +23,25 @@ function respond() {
   }
 }
 
+// Post message to GroupMe
 function postMessage() {
   var botResponse, options, body, botReq;
 
+  // Get bot's response
   botResponse = cool();
 
+  // Set post
   options = {
     hostname: 'api.groupme.com',
     path: '/v3/bots/post',
     method: 'POST'
   };
-
   body = {
     "bot_id" : botID,
     "text" : botResponse
   };
 
+  // Write log (good or bad) to console
   console.log('sending ' + botResponse + ' to ' + botID);
 
   botReq = HTTPS.request(options, function(res) {
