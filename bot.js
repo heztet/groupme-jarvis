@@ -13,7 +13,7 @@ function respond() {
 
   // '/cool guy'
   //if(request.text && coolRegex.test(request.text)) {
-  if (request.text && (equest.text.indexOf("/cool guy") > -1)) {
+  if (request.text && (request.text.indexOf("/cool guy") > -1)) {
     this.res.writeHead(200);
     var response = cool();
     postMessage(response);
