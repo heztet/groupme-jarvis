@@ -102,6 +102,8 @@ function getMessage(command) {
     } else {
         response = "I'm very sorry, but I didn't understand what you said";
     }
+
+    return response;
 }
 
 
