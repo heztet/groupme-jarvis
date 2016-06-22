@@ -84,11 +84,11 @@ function getMessage(command) {
     command = command.toLowerCase().trim();
     var response = "";
 
-    // [Blank or white-space only]
-    if (command == "") {
+    // [Blank or null command]
+    if ((!str || 0 === str.length)) {
         response = "How may I assist you?";
     // 'hi' or 'hello'
-    } else if (command.contains("hi")) {
+    } else if (command.contains("hi") or command.contains("hello")) {
         response = "Hello!";
     // 'help'
     } else if (command.contains("help")) {
@@ -106,7 +106,7 @@ function getMessage(command) {
         }
     // [Unknown command]
     } else {
-        response = "I'm very sorry, but I didn't understand what you said";
+        response = "I don't understand, Sir/Madam";
     }
 
     return response;
