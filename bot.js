@@ -14,7 +14,7 @@ function respond() {
     // Has text
     if (request.text) {
         // Convert to lowercase and remove extra spaces
-        var text = lowerCase(request.text).trim();
+        var text = request.text.toLowerCase().trim();
 
         // Record request
         console.log("Message received: " + text);
