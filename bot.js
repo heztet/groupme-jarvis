@@ -14,7 +14,7 @@ function respond() {
     // Has text
     if (request.text) {
         // Convert to lowercase and remove extra spaces
-        var text = request.text.toLowerCase().trim();
+        var text = lowerCase(request.text).trim();
 
         // Record request
         console.log("Message received: " + text);
@@ -80,7 +80,7 @@ function postMessage(botResponse) {
 
 function getMessage(command) {
     // Convert command to lowercase and trim
-    command = commandtoLowerCase().trim();
+    command = command.toLowerCase().trim();
     var response = "";
 
     // 'help'
