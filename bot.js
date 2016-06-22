@@ -79,13 +79,13 @@ function postMessage(botResponse) {
     botReq.end(JSON.stringify(body));
 }
 
-function getMessage(command) {
+function getMessage(request) {
     // Convert command to lowercase and trim
-    command = command.toLowerCase().trim();
+    var command = request.toLowerCase().trim();
     var response = "";
 
     // [Blank or null command]
-    if ((!command || 0 === command.length)) {
+    if (!command || 0 === command.length) {
         response = "How may I assist you?";
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
