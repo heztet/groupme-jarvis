@@ -85,21 +85,21 @@ function getMessage(command) {
     var response = "";
 
     // [Blank or white-space only]
-    if ((command.length === 0 || !command.trim())) {
+    if (command == "") {
         response = "How may I assist you?";
     // 'hi' or 'hello'
     } else if (command.contains("hi")) {
         response = "Hello!";
     // 'help'
-    } else if (command.indexOf("help") > -1) {
+    } else if (command.contains("help")) {
         response = "I'm sorry, but I can't do that right now";
     // 'weather'
-    } else if (command.indexOf("weather") > -1) {
+    } else if (command.contains("weather")) {
         response = "It should be sunny right now, but because it's Indiana I am unsure";
     // 'cool'
-    } else if (command.indexOf("cool") > -1) {
+    } else if (command.contains("cool")) {
         // 'alex'
-        if (command.indexOf("alex") > -1) {
+        if (command.contains("alex") && !command.contains("kranz")) {
             response = "Of course not!";
         } else {
             response = "It's 98 percent likely, yes";
@@ -117,7 +117,6 @@ String.prototype.contains = function (subStr) {
     if (this.indexOf(subStr) > -1) {
         return 1;
     }
-
     return 0;
 }
 
