@@ -13,11 +13,11 @@ function respond() {
     // Has text
     if (request.text) {
         // Convert to lowercase and remove extra spaces
-        var request = request.toLowerCase().trim();
+        var text = request.text.toLowerCase().trim();
         console.log("Request: " + request);
 
         // Has 'jarvis'
-        var index = request.text.indexOf("jarvis");
+        var index = text.indexOf("jarvis");
         if (index > -1) {
             this.res.writeHead(200);
             postMessage("You rang?");
