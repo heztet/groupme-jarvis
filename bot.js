@@ -28,6 +28,7 @@ function respond() {
             // Get response and post it
             response = getMessage(command);
             this.res.writeHead(200);
+            postMessage(response);
             this.res.end();
         }
         else {
