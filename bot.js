@@ -84,8 +84,14 @@ function getMessage(command) {
     command = command.toLowerCase().trim();
     var response = "";
 
+    // [Blank or white-space only]
+    if ((command.length === 0 || !command.trim())) {
+        response = "How may I assist you?";
+    // 'hi' or 'hello'
+    } else if (command.contains("hi")) {
+        response = "Hello!";
     // 'help'
-    if (command.indexOf("help") > -1) {
+    } else if (command.indexOf("help") > -1) {
         response = "I'm sorry, but I can't do that right now";
     // 'weather'
     } else if (command.indexOf("weather") > -1) {
@@ -96,9 +102,9 @@ function getMessage(command) {
         if (command.indexOf("alex") > -1) {
             response = "Of course not!";
         } else {
-            response = "It's 98% likely, yes";
+            response = "It's 98 percent likely, yes";
         }
-    // Unknown command
+    // [Unknown command]
     } else {
         response = "I'm very sorry, but I didn't understand what you said";
     }
@@ -106,5 +112,13 @@ function getMessage(command) {
     return response;
 }
 
+// Check if subStr exists in a string
+String.prototype.contains = function (subStr) {
+    if (this.indexOf(subStr) > -1) {
+        return 1;
+    }
+
+    return 0;
+}
 
 exports.respond = respond;
