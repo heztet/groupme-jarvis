@@ -1,6 +1,6 @@
 // Modules
 var HTTPS = require('https');
-var cool = require('cool-ascii-faces');
+var coolGuy = require('cool-ascii-faces');
 
 // Get the Bot Id
 var botID = process.env.BOT_ID;
@@ -96,9 +96,12 @@ function getMessage(request) {
     // 'weather'
     } else if (command.contains("weather")) {
         response = "It should be sunny right now, but because it's Indiana I am unsure";
+    // 'cool guy'
+    } else if (command.contains("cool guy")) {
+        response = coolGuy();
     // 'cool'
     } else if (command.contains("cool")) {
-        // 'alex'
+        // 'alex' (not 'kranz')
         if (command.contains("alex") && !command.contains("kranz")) {
             response = "Of course not!";
         } else {
