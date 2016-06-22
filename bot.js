@@ -88,7 +88,7 @@ function getMessage(command) {
     if ((!str || 0 === str.length)) {
         response = "How may I assist you?";
     // 'hi' or 'hello'
-    } else if (command.contains("hi") or command.contains("hello")) {
+    } else if (command.contains("hi") || command.contains("hello")) {
         response = "Hello!";
     // 'help'
     } else if (command.contains("help")) {
