@@ -26,7 +26,7 @@ function respond() {
             var command = text.substring(index).trim();
 
             // Get response and post it
-            response = getMessage(command);
+            var response = getMessage(command);
             this.res.writeHead(200);
             postMessage(response);
             this.res.end();
