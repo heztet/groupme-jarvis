@@ -1,6 +1,8 @@
 // Modules
 var HTTPS = require('https');
 var coolGuy = require('cool-ascii-faces');
+var natural = require('natural'),
+    tokenizer = new natural.WordTokenizer();
 
 // Get the Bot Id
 var botID = process.env.BOT_ID;
@@ -8,7 +10,7 @@ var botID = process.env.BOT_ID;
 // Get request and post response
 function respond() {
     // User post
-    console.log(JSON.stringify(this.req.chunks));
+    console.log(JSON.parse(this.req.chunks[0]));
     var request = JSON.parse(this.req.chunks[0]);
 
     /* Check that request calls for bot response */ 
@@ -85,7 +87,10 @@ function postMessage(botResponse) {
 function getMessage(request) {
     // Convert command to lowercase and trim
     var command = request.toLowerCase().trim();
-    var response = "";
+    // Make command an array of tokens (words)
+    command = tokenizer.tokenize(command);
+
+    var response;
 
     // [Blank or null command]
     if (!command || 0 === command.length) {
@@ -124,6 +129,11 @@ String.prototype.contains = function (subStr) {
         return 1;
     }
     return 0;
+}
+
+// Check if value exists in an array
+Array.prototype.contains = function (value) {
+    return this.indexOf(value) > -1;
 }
 
 exports.respond = respond;
