@@ -10,7 +10,6 @@ var botID = process.env.BOT_ID;
 // Get request and post response
 function respond() {
     // User post
-    console.log(JSON.parse(this.req.chunks[0]));
     var request = JSON.parse(this.req.chunks[0]);
 
     /* Check that request calls for bot response */ 
@@ -30,9 +29,11 @@ function respond() {
 
             // Get response and post it
             var response = getMessage(command, request.name);
-            this.res.writeHead(200);
-            postMessage(response);
-            this.res.end();
+            if (response) {
+                this.res.writeHead(200);
+                postMessage(response);
+                this.res.end();
+            }      
         }
         // Does not have 'jarvis'
         else {
@@ -85,6 +86,7 @@ function postMessage(botResponse) {
 }
 
 function getMessage(request, sender) {
+    console.log("Sender: " + sender);
     // Convert command to lowercase and trim
     var command = request.toLowerCase().trim();
     // Make command an array of tokens (words)
