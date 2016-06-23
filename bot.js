@@ -91,7 +91,7 @@ function getMessage(request, sender) {
     // Convert command to lowercase and trim
     var commandStr = request.toLowerCase().trim();
     // Make command an array of tokens (words)
-    command = tokenizer.tokenize(command);
+    command = tokenizer.tokenize(commandStr);
 
     var response;
 
