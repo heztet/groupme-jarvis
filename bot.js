@@ -20,7 +20,7 @@ function respond() {
         var text = request.text.toLowerCase().trim();
 
         // Record request
-        console.log("Message received: " + text);
+        console.log("Message received: \"" + text + "\" from \"" + request.sender + "\"");
 
         // Has 'jarvis'
         var index = text.indexOf("jarvis");
@@ -84,7 +84,7 @@ function postMessage(botResponse) {
     botReq.end(JSON.stringify(body));
 }
 
-function getMessage(request) {
+function getMessage(request, sender) {
     // Convert command to lowercase and trim
     var command = request.toLowerCase().trim();
     // Make command an array of tokens (words)
@@ -93,8 +93,8 @@ function getMessage(request) {
     var response;
 
     // [Blank or null command]
-    if (!command || 0 === command.length) {
-        response = "How may I assist you?";
+    if (sender == "Nicky Marino") {
+        response = "Absolutely, Sir";
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
         response = "Hello!";
