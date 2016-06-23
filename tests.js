@@ -2,9 +2,15 @@ var bot = require('./bot.js');
 
 function run() {
 	var testResults = [];
+	testResults.push(testCommand("", "Request did not have text"));
+	testResults.push(testCommand("no bot mentioned here", "Request didn't say my name!"));
 	testResults.push(testCommand("jarvis hello", "Hello!"));
 	testResults.push(testCommand("jarvis help", "I'm sorry, but I can't do that right now"));
 	testResults.push(testCommand("jarvis ahelpa", ""));
+	testResults.push(testCommand("jarvis weather", "It should be sunny right now, but because it's Indiana I am unsure"));
+	testResults.push(testCommand("jarvis is alex cool?", "Of course not!"));
+	testResults.push(testCommand("jarvis is alexander cool?", "It's 98 percent likely, yes"));
+	testResults.push(testCommand("jarvis nicky cool?", "It's 98 percent likely, yes"));	
 	return testResults.toString();
 }
 
