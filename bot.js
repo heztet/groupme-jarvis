@@ -20,7 +20,7 @@ function respond() {
         var text = request.text.toLowerCase().trim();
 
         // Record request
-        console.log("Message received: \"" + text + "\" from \"" + request.sender + "\"");
+        console.log("Message received: \"" + text + "\" from \"" + request.name + "\"");
 
         // Has 'jarvis'
         var index = text.indexOf("jarvis");
