@@ -87,15 +87,16 @@ function postMessage(botResponse) {
 
 function getMessage(request, sender) {
     console.log("Sender: " + sender);
+    console.log("Sender == 'Nicky Marino'?: " + (sender == "Nicky Marino"));
     // Convert command to lowercase and trim
-    var command = request.toLowerCase().trim();
+    var commandStr = request.toLowerCase().trim();
     // Make command an array of tokens (words)
     command = tokenizer.tokenize(command);
 
     var response;
 
     // [Blank or null command]
-    if (sender == "Nicky Marino" && command.contains("?")) {
+    if (sender == "Nicky Marino" && commandStr.contains("?")) {
         response = "Absolutely, Sir";
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
