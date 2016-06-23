@@ -29,7 +29,7 @@ function respond() {
             var command = text.substring(index).trim();
 
             // Get response and post it
-            var response = getMessage(command);
+            var response = getMessage(command, request.name);
             this.res.writeHead(200);
             postMessage(response);
             this.res.end();
@@ -93,7 +93,7 @@ function getMessage(request, sender) {
     var response;
 
     // [Blank or null command]
-    if (sender == "Nicky Marino") {
+    if (sender == "Nicky Marino" && command.contains("?")) {
         response = "Absolutely, Sir";
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
