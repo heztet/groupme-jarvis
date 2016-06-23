@@ -8,6 +8,7 @@ var botID = process.env.BOT_ID;
 // Get request and post response
 function respond() {
     // User post
+    console.log(JSON.stringify(this.req.chunks));
     var request = JSON.parse(this.req.chunks[0]);
 
     /* Check that request calls for bot response */ 
@@ -31,11 +32,13 @@ function respond() {
             postMessage(response);
             this.res.end();
         }
+        // Does not have 'jarvis'
         else {
             console.log("Request didn't say my name!")
             this.res.writeHead(200);
             this.res.end();
         }
+    // No text
     } else {
         console.log("Request did not have text");
         this.res.writeHead(200);
@@ -109,7 +112,7 @@ function getMessage(request) {
         }
     // [Unknown command]
     } else {
-        response = "I don't understand, Sir/Madam";
+        response = "";
     }
 
     return response;
@@ -124,3 +127,4 @@ String.prototype.contains = function (subStr) {
 }
 
 exports.respond = respond;
+exports.getMessage = getMessage;
