@@ -102,8 +102,8 @@ function getMessage(request, sender) {
     } else if (command.contains("google")) {
         // Strip google from the commandStr
         var searchStr = commandStr.substring(commandStr.indexOf("google") + 7);
-        console.log(searchStr);
-        response = googleSearch(searchStr);
+        // Return first result
+        response = googleSearch(searchStr, 1);
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
         response = "Hello!";
@@ -133,8 +133,30 @@ function getMessage(request, sender) {
 }
 
 // Search google for string and return the first result
-function googleSearch(search) {
-    return "duh";
+function googleSearch(search, numResults) {
+    var google = require('google');
+    google.resultsPerPage = 25;
+    var nextCounter = 0;
+
+    var results = [];
+
+    var x = google('node.js best practices', function (err, res){
+        if (err) console.error(err)
+        var x = [];
+
+        for (var i = 0; i < res.links.length; ++i) {
+            var link = res.links[i];
+            results.push(link.title + ' - ' + link.href)
+            results.push(link.description + "\n")
+        }
+
+        if (nextCounter < 4) {
+            nextCounter += 1
+            if (res.next) res.next()
+        }
+
+    })
+    console.log(results);
 }
 
 // Check if subStr exists in a string
