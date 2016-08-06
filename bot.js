@@ -85,6 +85,7 @@ function postMessage(botResponse) {
     botReq.end(JSON.stringify(body));
 }
 
+// Determine appropriate response for the message sent to Jarvis
 function getMessage(request, sender) {
     // Convert command to lowercase and trim
     var commandStr = request.toLowerCase().trim();
@@ -97,6 +98,12 @@ function getMessage(request, sender) {
     // [Blank or null command]
     if (sender == "Aaron Zych" && commandStr.contains("?")) {
         response = "Of course, Sir";
+    // Google
+    } else if (command.contains("google")) {
+        // Strip google from the commandStr
+        var searchStr = commandStr.substring(commandStr.indexOf("google") + 7);
+        console.log(searchStr);
+        response = googleSearch(searchStr);
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
         response = "Hello!";
@@ -123,6 +130,11 @@ function getMessage(request, sender) {
     }
 
     return response;
+}
+
+// Search google for string and return the first result
+function googleSearch(search) {
+    return "duh";
 }
 
 // Check if subStr exists in a string

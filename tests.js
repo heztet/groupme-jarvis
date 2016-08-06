@@ -16,7 +16,9 @@ function run() {
 	testResults.push(testCommand("jarvis is alex cool?", "Of course not!"));
 	testResults.push(testCommand("jarvis is alexander cool?", "It's 98 percent likely, yes"));
 	testResults.push(testCommand("jarvis nicky cool?", "It's 98 percent likely, yes"));
-    
+    testResults.push(testCommand("jarvis google this", "duh"));
+    testResults.push(testCommand("jarvis Google this", "duh"));
+
     // Finish the table and return
     testResults.push("</table>");
 	return testResults.join("");
