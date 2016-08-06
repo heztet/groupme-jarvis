@@ -91,11 +91,12 @@ function getMessage(request, sender) {
     // Make command an array of tokens (words)
     command = tokenizer.tokenize(commandStr);
 
-    var response;
+    var response = "";
 
+    ///// BASIC CALL/RESPONSE MESSAGES  /////
     // [Blank or null command]
     if (sender == "Aaron Zych" && commandStr.contains("?")) {
-        response = "Absolutely, Sir";
+        response = "Of course, Sir";
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
         response = "Hello!";
