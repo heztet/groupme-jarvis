@@ -20,17 +20,17 @@ function respond() {
         path: '/groups/' + request.group_id + '/messages',
         method: 'GET'
     };
-    var newReq = https.request(options, (response) => {
+    var newReq = https.request(options, function(response) {
         console.log('count: ', response.count);
         console.log('messages: ', response.messages.toString());
 
-        response.on('data', (d) => {
-        process.stdout.write(d);
+        response.on('data', function(d) {
+            process.stdout.write(d);
         });
     });
     newReq.end();
 
-    newReq.on('error', (e) => {
+    newReq.on('error', function(e) {
         console.error(e);
     });
 
