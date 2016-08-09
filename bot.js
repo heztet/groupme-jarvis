@@ -11,7 +11,7 @@ var botID = process.env.BOT_ID;
 function respond() {
     // User post
     var request = JSON.parse(this.req.chunks[0]);
-
+    console.log(JSON.stringify(request));
     /* Check that request calls for bot response */ 
     // Has text
     if (request.text) {
