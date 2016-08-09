@@ -133,21 +133,19 @@ function getMessage(request, sender) {
 }
 
 // Search google for string and return the first result
+var searchResults = ['test'];     // global var quick fix for seraching
 function googleSearch(search, numResults) {
     var google = require('google');
     google.resultsPerPage = 25;
     var nextCounter = 0;
 
-    var results = [];
-
-    var x = google('node.js best practices', function (err, res){
+    google('node.js best practices', function (err, res){
         if (err) console.error(err)
-        var x = [];
 
         for (var i = 0; i < res.links.length; ++i) {
             var link = res.links[i];
-            results.push(link.title + ' - ' + link.href)
-            results.push(link.description + "\n")
+            searchResults.push(link.title + ' - ' + link.href)
+            searchResults.push(link.description + "\n")
         }
 
         if (nextCounter < 4) {
@@ -155,8 +153,10 @@ function googleSearch(search, numResults) {
             if (res.next) res.next()
         }
 
+        //console.log(searchResults);
+
     })
-    console.log(results);
+    console.log(searchResults);
 }
 
 // Check if subStr exists in a string
