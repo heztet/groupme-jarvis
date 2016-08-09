@@ -9,10 +9,32 @@ var botID = process.env.BOT_ID;
 
 // Get request and post response
 function respond() {
-    // User post
+    // Get user post
     var request = JSON.parse(this.req.chunks[0]);
-    console.log(JSON.stringify(request));
-    /* Check that request calls for bot response */ 
+    console.log("Request received. Full JSON:\n" + JSON.stringify(request));
+
+    // Testing only -> try to get messages back from GroupMe
+    const https = require('https');
+    var options = {
+        hostname: 'api.groupme.com',
+        path: '/groups/' + request.group_id + '/messages',
+        method: 'GET'
+    };
+    var newReq = https.request(options, (response) => {
+        console.log('count: ', response.count);
+        console.log('messages: ', response.messages.toString());
+
+        response.on('data', (d) => {
+        process.stdout.write(d);
+        });
+    });
+    newReq.end();
+
+    newReq.on('error', (e) => {
+        console.error(e);
+    });
+
+    // Check that request calls for bot response
     // Has text
     if (request.text) {
         // Convert to lowercase and remove extra spaces
@@ -68,11 +90,12 @@ function postMessage(botResponse) {
     console.log('sending ' + botResponse + ' to ' + botID);
 
     botReq = HTTPS.request(options, function(res) {
-      if(res.statusCode == 202) {
-        //neat
-      } else {
-        console.log('rejecting bad status code ' + res.statusCode);
-      }
+        if(res.statusCode == 202) {
+            // Nice!
+        } else {
+            // Oh no
+            console.log('rejecting bad status code ' + res.statusCode);
+        }
     });
 
     // Catch errors
@@ -126,7 +149,7 @@ function getMessage(request, sender) {
         }
     // [Unknown command]
     } else {
-        response = "";
+        response = "I didn't quite catch that.";
     }
 
     return response;
