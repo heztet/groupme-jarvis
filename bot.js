@@ -149,7 +149,6 @@ function getMessage(request, sender) {
 
         response = "I would suggest either " + diningCourts[court1] + " or " + diningCourts[court2] + " for eating today";
         console.log(response);
-    }
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
         response = "Hello!";
