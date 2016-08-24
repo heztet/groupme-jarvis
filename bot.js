@@ -138,14 +138,17 @@ function getMessage(request, sender) {
 
         // Get dining court indices
         court1 = Math.random() * (7 - 0) + 0;
+        console.log("Court 1: " + diningCourts[court1]);
         while (court2 == -1) {
             court2 = Math.random() * (7 - 0) + 0;
             if (court2 == court1) {
                 court2 = -1;
             }
         }
+        console.log("Court 2: " + diningCourts[court2]);
 
         response = "I would suggest either " + diningCourts[court1] + " or " + diningCourts[court2] + " for eating today";
+        console.log(response);
     }
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
