@@ -121,12 +121,32 @@ function getMessage(request, sender) {
     // [Blank or null command]
     if (sender == "Aaron Zych" && commandStr.contains("?")) {
         response = "Of course, Sir";
+    /*
     // Google
     } else if (command.contains("google")) {
         // Strip google from the commandStr
         var searchStr = commandStr.substring(commandStr.indexOf("google") + 7);
         // Return first result
         response = googleSearch(searchStr, 1);
+    */
+    // 'where', 'eat'
+    } else if (command.contains("where") && command.contains("eat")) {
+        diningCourts = ['Hillenbrand', 'Wiley', 'Ford', 'Earheart', 'Windsor', 'the Gathering Place'];
+
+        court1 = -1;
+        court2 = -1;
+
+        // Get dining court indices
+        court1 = Math.random() * (7 - 0) + 0;
+        while (court2 == -1) {
+            court2 = Math.random() * (7 - 0) + 0;
+            if (court2 == court1) {
+                court2 = -1;
+            }
+        }
+
+        response = "I would suggest either " + diningCourts[court1] + " or " + diningCourts[court2] + " for eating today";
+    }
     // 'hi' or 'hello'
     } else if (command.contains("hi") || command.contains("hello")) {
         response = "Hello!";
